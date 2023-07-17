@@ -1,6 +1,7 @@
 import "./globals.css";
-import Navbar from "./components/navbar/navbar";
-import Footer from "./components/footer/footer";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+import { AppProvider } from "./AppContext";
 
 export const metadata = {
 	title: "Selim Yaman",
@@ -11,9 +12,11 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body>
-				<Navbar />
-				{children}
-				<Footer />
+				<AppProvider>
+					<Navbar />
+					{children}
+					<Footer />
+				</AppProvider>
 			</body>
 		</html>
 	);
