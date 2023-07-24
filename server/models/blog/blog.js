@@ -9,6 +9,8 @@ const blogSchema = mongoose.Schema(
 	{
 		title: String,
 		content: String,
+		titleEng: String,
+		contentEng: String,
 		link: {
 			type: String,
 			default: duplicate,

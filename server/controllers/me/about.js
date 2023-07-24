@@ -16,14 +16,18 @@ export const postAbout = async (req, res) => {
 		const {
 			content1,
 			content2,
-			picturePath1,
-            picturePath2,
+			content1Eng,
+			content2Eng,
+			logo1,
+            logo2,
 		} = req.body;
 		const about = new About({
 			content1,
 			content2,
-			picturePath1,
-            picturePath2,
+			content1Eng,
+			content2Eng,
+			logo1,
+            logo2,
 		});
 		await about.save();
 		res.status(200).json(about);

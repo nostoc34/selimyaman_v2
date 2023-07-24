@@ -6,6 +6,8 @@ export const postBlog = async (req, res) => {
 		const {
 			title,
 			content,
+			titleEng,
+			contentEng,
 			mainPicture,
 			contentPicture1,
 			contentPicture2,
@@ -14,6 +16,8 @@ export const postBlog = async (req, res) => {
 		const newPost = new Blog({
 			title,
 			content,
+			titleEng,
+			contentEng,
 			mainPicture,
 			contentPicture1,
 			contentPicture2,

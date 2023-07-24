@@ -1,7 +1,10 @@
-import "./globals.css";
+"use client";
+import "../styles/globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
-import { AppProvider } from "./AppContext";
+import MainContext from "./MainContext";
+import variables from "../styles/variables.module.scss";
+import { useState } from "react";
 
 export const metadata = {
 	title: "Selim Yaman",
@@ -9,14 +12,27 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+	const [theme, setTheme] = useState(true);
+	const [lang, setLang] = useState(true);
+	
+	const data = {
+		theme,
+		setTheme,
+		lang,
+		setLang,
+	};
 	return (
 		<html lang="en">
-			<body>
-				<AppProvider>
+			<body
+				style={{
+					backgroundColor: theme ? variables.dmBg : variables.lmBg,
+				}}
+			>
+				<MainContext.Provider value={data}>
 					<Navbar />
 					{children}
 					<Footer />
-				</AppProvider>
+				</MainContext.Provider>
 			</body>
 		</html>
 	);

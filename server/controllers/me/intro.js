@@ -23,7 +23,16 @@ export const postIntro = async (req, res) => {
 			major2,
 			major3,
 			major4,
-			picturePath,
+			titleEng,
+			profession1Eng,
+			profession2Eng,
+			profession3Eng,
+			profession4Eng,
+			major1Eng,
+			major2Eng,
+			major3Eng,
+			major4Eng,
+			picture,
 		} = req.body;
 		const intro = new Intro({
 			title,
@@ -35,7 +44,16 @@ export const postIntro = async (req, res) => {
 			major2,
 			major3,
 			major4,
-			picturePath,
+			titleEng,
+			profession1Eng,
+			profession2Eng,
+			profession3Eng,
+			profession4Eng,
+			major1Eng,
+			major2Eng,
+			major3Eng,
+			major4Eng,
+			picture,
 		});
 		await intro.save();
 		res.status(200).json(intro);
