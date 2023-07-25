@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const introSchema = mongoose.Schema({
     title: String,
+    titleEng: String,
     profession1: String,
     profession2: String,
     profession3: String,
