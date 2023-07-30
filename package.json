@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server/index.js",
-    "client": "yarn --cwd client dev",
+    "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn client\" \"yarn run start\""
   },
   "author": "Nostoc",
