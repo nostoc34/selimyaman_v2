@@ -1,5 +1,5 @@
 import logo from "../../assets/logo.png";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import MainContext from "../../MainContext";
 import { FaToggleOn, FaToggleOff } from "react-icons/fa";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
@@ -50,7 +50,7 @@ export default function Navbar({ children, ...props }) {
 								<NavLink
 									to={link.href}
 									className={({ isActive }) =>
-										isActive ? "active" : ""
+										isActive ? classes.active : ""
 									}
 								>
 									{link.content}

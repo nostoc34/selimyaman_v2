@@ -73,6 +73,11 @@ const useStyles = createUseStyles((theme) => ({
 		cursor: "pointer",
 		display: "none",
 	},
+	
+	active: {
+		borderBottom: "2px solid",
+		borderBottomColor: theme.primary,
+	},
 
 	'@media (max-width: 850px)': {
 		navbarContainer: {
