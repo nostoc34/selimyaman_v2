@@ -5,7 +5,7 @@ import { FaToggleOn, FaToggleOff } from "react-icons/fa";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
-import useStyles from "./styles";
+import navbarStyles from "./styles";
 
 export default function Navbar({ children, ...props }) {
 	const { lang, setLang, theme, setTheme, isCollapsed, setCollapsed } = useContext(MainContext);
@@ -25,7 +25,7 @@ export default function Navbar({ children, ...props }) {
 	];
 
 	const navigate = useNavigate();
-	const classes = useStyles(props);
+	const classes = navbarStyles(props);
 
 	return (
 		<div className={classes.navbarContainer}>

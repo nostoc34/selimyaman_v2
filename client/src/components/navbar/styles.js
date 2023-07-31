@@ -1,15 +1,17 @@
 import { createUseStyles } from "react-jss";
 
-const useStyles = createUseStyles((theme) => ({
+const navbarStyles = createUseStyles((theme) => ({
 	navbarContainer: {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",
 		color: theme.primary,
 		margin: {
-			top: "3%",
-			bottom: "3%",
+			top: "30px",
+			bottom: "30px",
 		},
+		zIndex: 654654,
+		position: "relative",
 	},
 	navbarMenu: (props) => ({
 		display: "flex",
@@ -73,17 +75,17 @@ const useStyles = createUseStyles((theme) => ({
 		cursor: "pointer",
 		display: "none",
 	},
-	
+
 	active: {
 		borderBottom: "2px solid",
 		borderBottomColor: theme.primary,
 	},
 
-	'@media (max-width: 850px)': {
+	"@media (max-width: 850px)": {
 		navbarContainer: {
 			position: "relative",
 		},
-		navbarMenu: (props) =>  ({
+		navbarMenu: (props) => ({
 			display: "flex",
 			flexDirection: "column-reverse",
 			alignItems: "center",
@@ -95,24 +97,26 @@ const useStyles = createUseStyles((theme) => ({
 			maxHeight: props.mHeight,
 			overflowY: "hidden",
 			transition: "1s ease-in-out all",
+			background: props.collapseBg,
+			borderRadius: "5px",
 		}),
 		navbarLinksBox: {
 			flexDirection: "column",
-			gap: "15px"
+			gap: "15px",
 		},
-		navbarHamburgerMenu:{
+		navbarHamburgerMenu: {
 			display: "block",
 		},
 	},
 
-	'@media (max-width: 650px)': {
+	"@media (max-width: 650px)": {
 		navbarLogo: {
 			width: "60px",
 			height: "60px",
 			marginRight: "10px",
 		},
 		navbarLogoText: {
-			fontSize: "24px"
+			fontSize: "24px",
 		},
 		navbarMenu: (props) => ({
 			right: "10%",
@@ -122,8 +126,8 @@ const useStyles = createUseStyles((theme) => ({
 				fontSize: "18px",
 				fontWeight: "600",
 			},
-		}
-	}
+		},
+	},
 }));
 
-export default useStyles;
+export default navbarStyles;

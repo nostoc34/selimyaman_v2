@@ -1,10 +1,12 @@
 import { createUseStyles } from "react-jss";
 
-const useStyles = createUseStyles((theme) => ({
-    footer: {
-        color: theme.primary,
-        textAlign: "center",
-    }
-}))
+const footerStyles = createUseStyles((theme) => ({
+	footer: {
+		color: theme.primary,
+		textAlign: "center",
+		paddingBottom: "10px",
+		paddingTop:"10px",
+	},
+}));
 
-export default useStyles;
+export default footerStyles;
