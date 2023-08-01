@@ -4,7 +4,7 @@ const homeStyles = createUseStyles(
 	(theme) => ({
 		introContainer: {
 			display: "flex",
-			gap: "50px",
+			gap: "30px",
 		},
 		introLeft: {
 			width: "50%",
@@ -16,6 +16,7 @@ const homeStyles = createUseStyles(
 			flexDirection: "column",
 			justifyContent: "center",
 			alignItems: "center",
+			gap: "25px",
 			color: props.textColor,
 			borderBottomLeftRadius: "50px",
 			borderBottomRightRadius: "50px",
@@ -25,6 +26,7 @@ const homeStyles = createUseStyles(
 			},
 			"& > p": {
 				fontSize: "24px",
+				textAlign: "center",
 			},
 		}),
 		introPicture: {
@@ -37,8 +39,8 @@ const homeStyles = createUseStyles(
 			background: theme.primary,
 			color: props.textColor,
 			borderRadius: "50px",
-			marginTop: "50px",
-			marginBottom: "50px",
+			marginTop: "30px",
+			marginBottom: "30px",
 			padding: "5%",
 			display: "flex",
 			flexDirection: "column",
@@ -73,7 +75,6 @@ const homeStyles = createUseStyles(
 		"@media (max-width: 850px)": {
 			introContainer: {
 				flexDirection: "column",
-				gap: "20px",
 			},
 			introLeft: {
 				width: "100%",

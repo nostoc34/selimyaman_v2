@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, Fragment } from "react";
 import MainContext from "../../MainContext";
 import homeStyles from "./styles";
 
@@ -56,34 +56,25 @@ export default function Home({ children, ...props }) {
 							{lang ? introData[0].title : introData[0].titleEng}
 						</h1>
 					) : null}
-					<br />
 					{introData && introData.length ? (
 						<p>
 							{lang
-								? introData[0].profession1
-								: introData[0].profession1Eng}
-						</p>
-					) : null}
-					{introData && introData.length ? (
-						<p>
-							{lang
-								? introData[0].profession2
-								: introData[0].profession2Eng}
-						</p>
-					) : null}
-					<br />
-					{introData && introData.length ? (
-						<p>
-							{lang
-								? introData[0].major1
-								: introData[0].major1Eng}
-						</p>
-					) : null}
-					{introData && introData.length ? (
-						<p>
-							{lang
-								? introData[0].major2
-								: introData[0].major2Eng}
+								? introData[0].major
+										.split("\n")
+										.map((line, index) => (
+											<Fragment key={index}>
+												{line}
+												<br />
+											</Fragment>
+										))
+								: introData[0].majorEng
+										.split("\n")
+										.map((line, index) => (
+											<Fragment key={index}>
+												{line}
+												<br />
+											</Fragment>
+										))}
 						</p>
 					) : null}
 				</div>

@@ -5,7 +5,6 @@ const footerStyles = createUseStyles((theme) => ({
 		color: theme.primary,
 		textAlign: "center",
 		paddingBottom: "10px",
-		paddingTop:"10px",
 	},
 }));
 

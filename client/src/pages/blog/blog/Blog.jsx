@@ -22,7 +22,7 @@ function Blog({ children, ...props }) {
 
 	useEffect(() => {
 		fetchBlogData();
-	}, [blogData]);
+	}, []);
 	const navigate = useNavigate();
 	const classes = blogStyles(props);
 	return (
