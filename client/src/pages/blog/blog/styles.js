@@ -20,10 +20,12 @@ const blogStyles = createUseStyles(
 			"& > img": {
 				width: "100%",
 				height: "100%",
+                transition: "1s linear all",
 			},
             "&:hover": {
                 "& > img": {
-                    opacity: "0.3"
+                    opacity: "0.3",
+                    transition: "1s linear all",
                 },
                 "& > div": {
                     transition: "1s linear all",

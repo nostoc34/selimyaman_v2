@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/me/Home";
 import Blog from "./pages/blog/blog/Blog";
+import InnerBlog from "./pages/blog/inner/InnerBlog";
 
 function App() {
 	const [theme, setTheme] = useState(true);
@@ -32,7 +33,7 @@ function App() {
 						<Route path="/*" element={<div>404</div>} />
 						<Route path="/" element={<Home textColor={theme ? myTheme.dmText : myTheme.lmText} />} />
 						<Route path="/blog" element={<Blog />} />
-						<Route path="/blog/:id" element={<div>Inner Blog</div>} />
+						<Route path="/blog/:id" element={<InnerBlog textColor={theme ? myTheme.dmText : myTheme.lmText} />} />
 						<Route path="/iletisim" element={<div>Contact</div>} />
 					</Routes>
 					<Footer />

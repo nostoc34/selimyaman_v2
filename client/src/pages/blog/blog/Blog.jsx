@@ -22,8 +22,7 @@ function Blog({ children, ...props }) {
 
 	useEffect(() => {
 		fetchBlogData();
-		console.log(blogData);
-	}, []);
+	}, [blogData]);
 	const navigate = useNavigate();
 	const classes = blogStyles(props);
 	return (
