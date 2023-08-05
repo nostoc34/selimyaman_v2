@@ -1,14 +1,16 @@
-import { useEffect, useState, useContext, Fragment } from "react";
-import MainContext from "../../MainContext";
+import { useEffect, useState, Fragment } from "react";
 import homeStyles from "./styles";
+import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
 
 export default function Home({ children, ...props }) {
 	const [introData, setIntroData] = useState([]);
 	const [aboutData, setAboutData] = useState([]);
-	const { lang } = useContext(MainContext);
 
-	const fetchIntroData = () => {
-		fetch("http://localhost:5000/api/intro")
+	const { colors } = useNCoreTheme();
+	const { activeLocale } = useNCoreLocalization();
+
+	const fetchIntroData = async () => {
+		await fetch("http://localhost:5000/api/intro")
 			.then((res) => {
 				return res.json();
 			})
@@ -19,8 +21,8 @@ export default function Home({ children, ...props }) {
 				console.log(err);
 			});
 	};
-	const fetchAboutData = () => {
-		fetch("http://localhost:5000/api/about")
+	const fetchAboutData = async () => {
+		await fetch("http://localhost:5000/api/about")
 			.then((res) => {
 				return res.json();
 			})
@@ -39,7 +41,7 @@ export default function Home({ children, ...props }) {
 
 	const classes = homeStyles(props);
 	return (
-		<div className="homepage-container">
+		<div className={classes.homepageContainer}>
 			<div className={classes.introContainer}>
 				<div className={classes.introLeft}>
 					{introData && introData.length ? (
@@ -50,15 +52,23 @@ export default function Home({ children, ...props }) {
 						/>
 					) : null}
 				</div>
-				<div className={classes.introRight}>
+				<div
+					className={classes.introRight}
+					style={{
+						background: colors.primary,
+						color: colors.textColor,
+					}}
+				>
 					{introData && introData.length ? (
 						<h1>
-							{lang ? introData[0].title : introData[0].titleEng}
+							{activeLocale === "tr"
+								? introData[0].title
+								: introData[0].titleEng}
 						</h1>
 					) : null}
 					{introData && introData.length ? (
 						<p>
-							{lang
+							{activeLocale === "tr"
 								? introData[0].major
 										.split("\n")
 										.map((line, index) => (
@@ -79,17 +89,23 @@ export default function Home({ children, ...props }) {
 					) : null}
 				</div>
 			</div>
-			<div className={classes.aboutContainer}>
+			<div
+				className={classes.aboutContainer}
+				style={{
+					background: colors.primary,
+					color: colors.textColor,
+				}}
+			>
 				{aboutData && aboutData.length ? (
 					<p>
-						{lang
+						{activeLocale === "tr"
 							? aboutData[0].content1
 							: aboutData[0].content1Eng}
 					</p>
 				) : null}
 				{aboutData && aboutData.length ? (
 					<p>
-						{lang
+						{activeLocale === "tr"
 							? aboutData[0].content2
 							: aboutData[0].content2Eng}
 					</p>

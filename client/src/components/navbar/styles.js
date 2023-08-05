@@ -1,17 +1,18 @@
 import { createUseStyles } from "react-jss";
 
-const navbarStyles = createUseStyles((theme) => ({
+const navbarStyles = createUseStyles({
 	navbarContainer: {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",
-		color: theme.primary,
 		margin: {
 			top: "30px",
 			bottom: "30px",
 		},
 		zIndex: 654654,
 		position: "relative",
+		marginRight: "13%",
+		marginLeft: "13%",
 	},
 	navbarMenu: (props) => ({
 		display: "flex",
@@ -25,10 +26,17 @@ const navbarStyles = createUseStyles((theme) => ({
 		alignItems: "center",
 		cursor: "pointer",
 	},
+	"@keyframes turnAround": {
+		"90%": { transform: "rotateY(0deg)" },
+		"100%": { transform: "rotateY(360deg)" },
+	},
 	navbarLogo: {
 		width: "80px",
 		height: "80px",
 		marginRight: "10px",
+		animationName: "$turnAround",
+		animationDuration: "30s",
+		animationIterationCount: "infinite",
 	},
 	navbarLogoText: {
 		fontSize: "36px",
@@ -42,7 +50,6 @@ const navbarStyles = createUseStyles((theme) => ({
 	},
 	navbarLink: {
 		"& > a": {
-			color: theme.primary,
 			fontSize: "24px",
 			fontWeight: "600",
 		},
@@ -76,10 +83,9 @@ const navbarStyles = createUseStyles((theme) => ({
 		display: "none",
 	},
 
-	active: {
+	active: (props) => ({
 		borderBottom: "2px solid",
-		borderBottomColor: theme.primary,
-	},
+	}),
 
 	"@media (max-width: 850px)": {
 		navbarContainer: {
@@ -97,7 +103,7 @@ const navbarStyles = createUseStyles((theme) => ({
 			maxHeight: props.mHeight,
 			overflowY: "hidden",
 			transition: "1s ease-in-out all",
-			background: props.collapseBg,
+			background: props.navbarBg,
 			borderRadius: "5px",
 		}),
 		navbarLinksBox: {
@@ -128,6 +134,6 @@ const navbarStyles = createUseStyles((theme) => ({
 			},
 		},
 	},
-}));
+});
 
 export default navbarStyles;

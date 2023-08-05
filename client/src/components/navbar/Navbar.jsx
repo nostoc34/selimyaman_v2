@@ -6,31 +6,37 @@ import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
 import navbarStyles from "./styles";
+import { useNCoreLocalization, useNCoreTheme } from "ncore-web";
+import { MENU } from "./menu";
+import { useState } from "react";
 
 export default function Navbar({ children, ...props }) {
-	const { lang, setLang, theme, setTheme, isCollapsed, setCollapsed } = useContext(MainContext);
-	
+	const { isCollapsed, setCollapsed } = useContext(MainContext);
+
+	const { activeLocale, switchLocale, localize } = useNCoreLocalization();
+	const { colors, activeTheme, switchTheme, spaces } = useNCoreTheme();
+
 	const handleCollapseMenu = () => {
 		if (isCollapsed) {
 			setCollapsed(!isCollapsed);
 		} else {
 			setCollapsed(true);
 		}
-		console.log(isCollapsed);
 	};
-	const links = [
-		{ href: "/", content: lang ? "Ben" : "Me" },
-		{ href: "/blog", content: "Blog" },
-		{ href: "/iletisim", content: lang ? "İletişim" : "Contact" },
-	];
 
 	const navigate = useNavigate();
 	const classes = navbarStyles(props);
 
 	return (
-		<div className={classes.navbarContainer}>
+		<div
+			className={classes.navbarContainer}
+			style={{ color: colors.primary }}
+		>
 			<div
 				className={classes.navbarLogoBox}
+				style={{
+					padding: spaces.container,
+				}}
 				onClick={() => {
 					navigate("/");
 				}}
@@ -38,50 +44,51 @@ export default function Navbar({ children, ...props }) {
 				<img className={classes.navbarLogo} src={logo} alt="logo" />
 				<h1 className={classes.navbarLogoText}>Selim Yaman</h1>
 			</div>
-
-			<div id="navbar-menu" className={classes.navbarMenu}>
+			<div
+				id="navbar-menu"
+				className={classes.navbarMenu}
+				style={{ background: isCollapsed ? colors.textColor : null }}
+			>
 				<div className={classes.navbarLinksBox}>
-					{links.map((link) => {
+					{MENU.map((item, index) => {
 						return (
-							<div
-								className={classes.navbarLink}
-								key={link.content}
-							>
+							<div className={classes.navbarLink} key={index}>
 								<NavLink
-									to={link.href}
+									to={item.path}
 									className={({ isActive }) =>
 										isActive ? classes.active : ""
 									}
+									style={{ color: colors.primary }}
 								>
-									{link.content}
+									{localize(item.key)}
 								</NavLink>
 							</div>
 						);
 					})}
 				</div>
-
 				<div>
-					<div
-						className={classes.navbarToggles}
-						onClick={() => {
-							if (lang) {
-								setLang(!lang);
-							} else {
-								setLang(true);
-							}
-						}}
-					>
+					<div className={classes.navbarToggles}>
 						<div className={classes.navbarToggleMiniBox}>
 							<p>TR</p>
 						</div>
 						<div className={classes.navbarToggleMiniBox}>
-							{lang ? (
+							{activeLocale === "tr" ? (
 								<FaToggleOff
 									className={classes.navbarToogleIcon}
+									onClick={() => {
+										switchLocale(
+											activeLocale === "tr" ? "en" : "tr"
+										);
+									}}
 								/>
 							) : (
 								<FaToggleOn
 									className={classes.navbarToogleIcon}
+									onClick={() => {
+										switchLocale(
+											activeLocale === "tr" ? "en" : "tr"
+										);
+									}}
 								/>
 							)}
 						</div>
@@ -89,27 +96,34 @@ export default function Navbar({ children, ...props }) {
 							<p>ENG</p>
 						</div>
 					</div>
-					<div
-						className={classes.navbarToggles}
-						onClick={() => {
-							if (theme) {
-								setTheme(!theme);
-							} else {
-								setTheme(true);
-							}
-						}}
-					>
+					<div className={classes.navbarToggles}>
 						<div className={classes.navbarToggleMiniBox}>
 							<MdOutlineDarkMode />
 						</div>
 						<div className={classes.navbarToggleMiniBox}>
-							{theme ? (
+							{activeTheme === "dark" ? (
 								<FaToggleOff
 									className={classes.navbarToogleIcon}
+									onClick={() => {
+										switchTheme(
+											activeTheme === "dark"
+												? "light"
+												: "dark"
+										);
+										console.log(activeTheme);
+									}}
 								/>
 							) : (
 								<FaToggleOn
 									className={classes.navbarToogleIcon}
+									onClick={() => {
+										switchTheme(
+											activeTheme === "dark"
+												? "light"
+												: "dark"
+										);
+										console.log(activeTheme);
+									}}
 								/>
 							)}
 						</div>

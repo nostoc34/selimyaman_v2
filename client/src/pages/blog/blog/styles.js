@@ -5,6 +5,8 @@ const blogStyles = createUseStyles(
 		mainContainer: {
 			display: "flex",
 			gap: "30px",
+			marginRight: "13%",
+			marginLeft: "13%",
 		},
 		column: {
 			width: "50%",
@@ -18,12 +20,12 @@ const blogStyles = createUseStyles(
 			cursor: "pointer",
 			position: "relative",
 			transition: "1s linear all",
-			
+
 			"& > img": {
 				width: "100%",
 				height: "100%",
 				transition: "1s linear all",
-                borderRadius: "50px",
+				borderRadius: "50px",
 			},
 			"&:hover": {
 				"& > img": {

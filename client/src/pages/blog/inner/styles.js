@@ -23,7 +23,7 @@ const innerBlogStyles = createUseStyles(
 		},
 		content: (props) => ({
 			textAlign: "justify",
-			color: props.textColor,
+			color: theme.textColor,
 			marginBottom: "40px",
 			fontSize: "20px",
 		}),

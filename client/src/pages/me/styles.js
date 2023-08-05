@@ -1,7 +1,11 @@
 import { createUseStyles } from "react-jss";
 
 const homeStyles = createUseStyles(
-	(theme) => ({
+	{
+		homepageContainer: {
+			marginRight: "13%",
+			marginLeft: "13%",
+		},
 		introContainer: {
 			display: "flex",
 			gap: "30px",
@@ -11,13 +15,11 @@ const homeStyles = createUseStyles(
 		},
 		introRight: (props) => ({
 			width: "50%",
-			backgroundColor: theme.primary,
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
 			alignItems: "center",
 			gap: "25px",
-			color: props.textColor,
 			borderBottomLeftRadius: "50px",
 			borderBottomRightRadius: "50px",
 			"& > h1": {
@@ -36,8 +38,6 @@ const homeStyles = createUseStyles(
 			borderTopRightRadius: "50px",
 		},
 		aboutContainer: (props) => ({
-			background: theme.primary,
-			color: props.textColor,
 			borderRadius: "50px",
 			marginTop: "30px",
 			marginBottom: "30px",
@@ -92,7 +92,7 @@ const homeStyles = createUseStyles(
 				marginBottom: "20px",
 			}),
 		},
-	}),
+	},
 	{ name: "Homepage" }
 );
 
