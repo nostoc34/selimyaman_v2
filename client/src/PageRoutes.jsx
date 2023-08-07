@@ -42,6 +42,8 @@ function PageRoutes() {
 							inputBg={colors.inputBg}
 							btnBg={colors.primary}
 							btnTxtColor={colors.textColor}
+							svgClr={colors.primary}
+							svgHoverClr={colors.antiBackground}
 						/>
 					}
 				/>

@@ -1,12 +1,12 @@
 import logo from "../../assets/logo.png";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import MainContext from "../../MainContext";
 import { FaToggleOn, FaToggleOff } from "react-icons/fa";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
 import navbarStyles from "./styles";
-import { useNCoreLocalization, useNCoreTheme } from "ncore-web";
+import { useNCoreLocalization, useNCoreTheme, Switcher } from "ncore-web";
 import { MENU } from "./menu";
 
 export default function Navbar({ children, ...props }) {
@@ -25,6 +25,23 @@ export default function Navbar({ children, ...props }) {
 
 	const navigate = useNavigate();
 	const classes = navbarStyles(props);
+
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+	const handleResize = () => {
+		setWindowWidth(window.innerWidth);
+		if (windowWidth >= 850) {
+			setCollapsed(false);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 
 	return (
 		<div
@@ -46,7 +63,9 @@ export default function Navbar({ children, ...props }) {
 			<div
 				id="navbar-menu"
 				className={classes.navbarMenu}
-				style={{ background: isCollapsed ? colors.antiBackground : null }}
+				style={{
+					background: isCollapsed ? colors.antiBackground : null,
+				}}
 			>
 				<div className={classes.navbarLinksBox}>
 					{MENU.map((item, index) => {

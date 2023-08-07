@@ -130,7 +130,7 @@ export default function Home({ children, ...props }) {
 						{activeLocale === "tr" ? "Ben Kimim?" : "Who Am I?"}
 					</p>
 				</div>
-				<div>
+				<div className={classes.logoContainer}>
 					{aboutData && aboutData.length ? (
 						<img
 							className={classes.aboutLogo}

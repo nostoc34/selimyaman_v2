@@ -43,6 +43,7 @@ const homeStyles = createUseStyles(
 			padding: "3% 10%",
 			display: "flex",
 			justifyContent: "center",
+			alignItems: "center",
 			textAlign: "center",
 			gap: "50px",
 			fontSize: "20px",
@@ -53,7 +54,7 @@ const homeStyles = createUseStyles(
 			flexDirection: "column",
 			alignItems: "center",
 			justifyContent: "center",
-			padding: "0 15% 0 0",
+			paddingRight: "15%",
 			gap: "20px",
 		},
 		who: (props) => ({
@@ -71,13 +72,17 @@ const homeStyles = createUseStyles(
 		}),
 		aboutLogo: {
 			width: "100%",
+			height: "auto",
+			minWidth: "50px",
 			maxWidth: "50px",
 			maxHeight: "50px",
-			margin: {
-				right: "5px",
-				left: "5px",
-				top: "15px",
-			},
+		},
+		logoContainer: {
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "center",
+			alignItems: "center",
+			gap: "15px",
 		},
 		"@media (max-width: 1100px)": {
 			introRight: (props) => ({
@@ -109,6 +114,23 @@ const homeStyles = createUseStyles(
 			aboutContainer: (props) => ({
 				padding: "10%",
 				marginTop: "20px",
+				flexDirection: "column",
+			}),
+			aboutContents: {
+				paddingRight: 0,
+			},
+			logoContainer: {
+				flexDirection: "row",
+			},
+			aboutLogo: {
+				width: "100%",
+				height: "auto",
+				minWidth: "40px",
+				maxWidth: "40px",
+				maxHeight: "40px",
+			},
+			who: (props) => ({
+				fontSize: "18px"
 			}),
 		},
 	},

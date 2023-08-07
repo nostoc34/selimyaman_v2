@@ -32,7 +32,7 @@ function Contact({ children, ...props }) {
 			style={{ backgroundColor: colors.background }}
 		>
 			<form action="" className={classes.form}>
-				<div style={{ display: "flex", gap: "30px", width: "100%" }}>
+				<div className={classes.formNames}>
 					<TextInput
 						placeholder={activeLocale === "tr" ? "Ad" : "Name"}
 						className={classes.formInput}
@@ -55,6 +55,17 @@ function Contact({ children, ...props }) {
 					spreadBehaviour="stretch"
 					title={activeLocale === "tr" ? "Gönder" : "Send"}
 				/>
+				<p
+					style={{
+						color: colors.antiBackground,
+						textAlign: "center",
+					}}
+				>
+					{" "}
+					{activeLocale === "tr"
+						? "Daha fazla bilgi için: mselimyaman@gmail.com"
+						: "For more info: mselimyaman@gmail.com"}{" "}
+				</p>
 			</form>
 			<div className={classes.socialsContainer}>
 				{socialsData.map((social) => {
@@ -62,7 +73,7 @@ function Contact({ children, ...props }) {
 						<a href={social.link} target="blank">
 							<ReactSVG
 								className={classes.socialsItem}
-								style={{ color: colors.primary }}
+								// style={{ color: colors.primary }}
 								src={`http://localhost:5000/assets/${social.logo}`}
 								alt={social.title}
 							/>

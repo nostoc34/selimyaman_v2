@@ -102,13 +102,14 @@ const navbarStyles = createUseStyles({
 			gap: "15px",
 			position: "absolute",
 			top: "60%",
-			right: "5%",
+			right: "55px",
 			height: "auto",
 			maxHeight: props.mHeight,
 			overflowY: "hidden",
 			transition: "1s ease-in-out all",
 			background: props.navbarBg,
 			borderRadius: "5px",
+			padding: "5px"
 		}),
 		navbarLinksBox: {
 			flexDirection: "column",
@@ -129,7 +130,7 @@ const navbarStyles = createUseStyles({
 			fontSize: "24px",
 		},
 		navbarMenu: (props) => ({
-			right: "10%",
+			right: "45px",
 		}),
 		navbarLink: {
 			"& > a": {
