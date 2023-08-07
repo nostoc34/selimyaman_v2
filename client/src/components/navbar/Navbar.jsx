@@ -8,13 +8,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import navbarStyles from "./styles";
 import { useNCoreLocalization, useNCoreTheme } from "ncore-web";
 import { MENU } from "./menu";
-import { useState } from "react";
 
 export default function Navbar({ children, ...props }) {
 	const { isCollapsed, setCollapsed } = useContext(MainContext);
 
 	const { activeLocale, switchLocale, localize } = useNCoreLocalization();
-	const { colors, activeTheme, switchTheme, spaces } = useNCoreTheme();
+	const { colors, activeTheme, switchTheme } = useNCoreTheme();
 
 	const handleCollapseMenu = () => {
 		if (isCollapsed) {
@@ -30,13 +29,13 @@ export default function Navbar({ children, ...props }) {
 	return (
 		<div
 			className={classes.navbarContainer}
-			style={{ color: colors.primary }}
+			style={{
+				color: colors.primary,
+				backgroundColor: colors.background,
+			}}
 		>
 			<div
 				className={classes.navbarLogoBox}
-				style={{
-					padding: spaces.container,
-				}}
 				onClick={() => {
 					navigate("/");
 				}}
@@ -58,7 +57,6 @@ export default function Navbar({ children, ...props }) {
 									className={({ isActive }) =>
 										isActive ? classes.active : ""
 									}
-									style={{ color: colors.primary }}
 								>
 									{localize(item.key)}
 								</NavLink>

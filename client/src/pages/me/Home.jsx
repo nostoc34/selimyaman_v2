@@ -1,6 +1,7 @@
 import { useEffect, useState, Fragment } from "react";
 import homeStyles from "./styles";
 import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
+import { useNavigate } from "react-router-dom";
 
 export default function Home({ children, ...props }) {
 	const [introData, setIntroData] = useState([]);
@@ -8,6 +9,8 @@ export default function Home({ children, ...props }) {
 
 	const { colors } = useNCoreTheme();
 	const { activeLocale } = useNCoreLocalization();
+
+	const navigate = useNavigate();
 
 	const fetchIntroData = async () => {
 		await fetch("http://localhost:5000/api/intro")
@@ -41,7 +44,10 @@ export default function Home({ children, ...props }) {
 
 	const classes = homeStyles(props);
 	return (
-		<div className={classes.homepageContainer}>
+		<div
+			className={classes.homepageContainer}
+			style={{ backgroundColor: colors.background }}
+		>
 			<div className={classes.introContainer}>
 				<div className={classes.introLeft}>
 					{introData && introData.length ? (
@@ -96,20 +102,34 @@ export default function Home({ children, ...props }) {
 					color: colors.textColor,
 				}}
 			>
-				{aboutData && aboutData.length ? (
-					<p>
-						{activeLocale === "tr"
-							? aboutData[0].content1
-							: aboutData[0].content1Eng}
+				<div className={classes.aboutContents}>
+					{aboutData && aboutData.length ? (
+						<p>
+							{activeLocale === "tr"
+								? aboutData[0].content1
+								: aboutData[0].content1Eng}
+						</p>
+					) : null}
+					{aboutData && aboutData.length ? (
+						<p>
+							{activeLocale === "tr"
+								? aboutData[0].content2
+								: aboutData[0].content2Eng}
+						</p>
+					) : null}
+					<p
+						className={classes.who}
+						style={{
+							backgroundColor: colors.textColor,
+							color: colors.primary,
+						}}
+						onClick={() => {
+							navigate("/blog/ben-kimim");
+						}}
+					>
+						{activeLocale === "tr" ? "Ben Kimim?" : "Who Am I?"}
 					</p>
-				) : null}
-				{aboutData && aboutData.length ? (
-					<p>
-						{activeLocale === "tr"
-							? aboutData[0].content2
-							: aboutData[0].content2Eng}
-					</p>
-				) : null}
+				</div>
 				<div>
 					{aboutData && aboutData.length ? (
 						<img

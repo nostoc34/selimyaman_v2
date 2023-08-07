@@ -5,14 +5,14 @@ const navbarStyles = createUseStyles({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",
-		margin: {
-			top: "30px",
-			bottom: "30px",
+		padding: {
+			top: "20px",
+			bottom: "20px",
+			right: "3%",
+			left: "3%",
 		},
 		zIndex: 654654,
 		position: "relative",
-		marginRight: "13%",
-		marginLeft: "13%",
 	},
 	navbarMenu: (props) => ({
 		display: "flex",
@@ -48,12 +48,16 @@ const navbarStyles = createUseStyles({
 		gap: "30px",
 		padding: "3px",
 	},
-	navbarLink: {
+	navbarLink: (props) => ({
 		"& > a": {
 			fontSize: "24px",
 			fontWeight: "600",
+			color: props.linkColor,
+			"&:hover": {
+				color: props.hoverLinkColor,
+			},
 		},
-	},
+	}),
 	navbarToggles: {
 		display: "flex",
 		alignItems: "center",
@@ -97,7 +101,7 @@ const navbarStyles = createUseStyles({
 			alignItems: "center",
 			gap: "15px",
 			position: "absolute",
-			top: "50px",
+			top: "60%",
 			right: "5%",
 			height: "auto",
 			maxHeight: props.mHeight,

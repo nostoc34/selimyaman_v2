@@ -1,7 +1,11 @@
 import { createUseStyles } from "react-jss";
 
 const innerBlogStyles = createUseStyles(
-	(theme) => ({
+	{
+		mainContainer: {
+			paddingRight: "13%",
+			paddingLeft: "13%",
+		},
 		header: {
 			display: "flex",
 			justifyContent: "center",
@@ -15,7 +19,6 @@ const innerBlogStyles = createUseStyles(
 			display: "flex",
 			justifyContent: "space-between",
 			alignItems: "center",
-			color: theme.primary,
 			marginBottom: "20px",
 			"& > h1": {
 				fontSize: "40px",
@@ -23,8 +26,6 @@ const innerBlogStyles = createUseStyles(
 		},
 		content: (props) => ({
 			textAlign: "justify",
-			color: theme.textColor,
-			marginBottom: "40px",
 			fontSize: "20px",
 		}),
 		"@media (max-width: 850px)": {
@@ -50,7 +51,7 @@ const innerBlogStyles = createUseStyles(
 				},
 			},
 		},
-	}),
+	},
 	{ name: "innerBlog" }
 );
 

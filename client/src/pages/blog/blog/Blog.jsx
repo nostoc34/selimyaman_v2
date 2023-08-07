@@ -1,11 +1,12 @@
-import { useEffect, useState, useContext } from "react";
-import MainContext from "../../../MainContext";
+import { useEffect, useState } from "react";
+import { useNCoreLocalization, useNCoreTheme } from "ncore-web";
 import { useNavigate } from "react-router-dom";
 import blogStyles from "./styles";
 
 function Blog({ children, ...props }) {
-	const { lang } = useContext(MainContext);
 	const [blogData, setBlogData] = useState([]);
+	const { activeLocale } = useNCoreLocalization();
+	const { colors } = useNCoreTheme();
 
 	const fetchBlogData = () => {
 		fetch("http://localhost:5000/api/blog")
@@ -26,7 +27,10 @@ function Blog({ children, ...props }) {
 	const navigate = useNavigate();
 	const classes = blogStyles(props);
 	return (
-		<div className={classes.mainContainer}>
+		<div
+			className={classes.mainContainer}
+			style={{ backgroundColor: colors.background }}
+		>
 			<div className={classes.column}>
 				{blogData.map((blog, index) => {
 					const options = {
@@ -50,9 +54,16 @@ function Blog({ children, ...props }) {
 									src={`http://localhost:5000/assets/${blog.mainPicture}`}
 									alt={blog.title}
 								/>
-								<div className={classes.itemInfo}>
-									<h1>{lang ? blog.title : blog.titleEng}</h1>
-                                    <h3>{publishDate}</h3>
+								<div
+									className={classes.itemInfo}
+									style={{ color: colors.primary }}
+								>
+									<h1>
+										{activeLocale === "tr"
+											? blog.title
+											: blog.titleEng}
+									</h1>
+									<h3>{publishDate}</h3>
 								</div>
 							</div>
 						);
@@ -82,9 +93,16 @@ function Blog({ children, ...props }) {
 									src={`http://localhost:5000/assets/${blog.mainPicture}`}
 									alt={blog.title}
 								/>
-                                <div className={classes.itemInfo}>
-									<h1>{lang ? blog.title : blog.titleEng}</h1>
-                                    <h3>{publishDate}</h3>
+								<div
+									className={classes.itemInfo}
+									style={{ color: colors.primary }}
+								>
+									<h1>
+										{activeLocale === "tr"
+											? blog.title
+											: blog.titleEng}
+									</h1>
+									<h3>{publishDate}</h3>
 								</div>
 							</div>
 						);

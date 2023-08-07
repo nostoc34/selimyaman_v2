@@ -1,6 +1,7 @@
 const colors = {
 	primary: "#9f6000",
 	background: "#000",
+	antiBackground: "#fff",
 	textColor: "#fff",
 	inputBg: "rgba(159, 96, 0, 0.4)",
 	placeholder: "rgba(0, 0, 0, 0.5)",

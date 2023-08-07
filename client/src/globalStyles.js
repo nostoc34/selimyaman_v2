@@ -5,7 +5,7 @@ const globalStyles = createUseStyles((theme) => ({
 		"::-webkit-scrollbar-thumb": {
 			border: "0px none #ffffff",
 			background: "#9f6000",
-			borderRadius: 100,
+			borderRadius: 0,
 		},
 		"::-webkit-scrollbar-thumb:hover": {
 			background: "#9f6000",
@@ -16,7 +16,7 @@ const globalStyles = createUseStyles((theme) => ({
 		"::-webkit-scrollbar-track": {
 			border: "0px none #ffffff",
 			background: "#3c3c3c",
-			borderRadius: 100,
+			borderRadius: 0,
 		},
 		"::-webkit-scrollbar-track:hover": {
 			background: "#464646",
@@ -27,9 +27,9 @@ const globalStyles = createUseStyles((theme) => ({
 		"::-webkit-scrollbar-corner": {
 			background: "transparent",
 		},
-		// "*": {
-		// 	transition: "none",
-		// }
+		"*": {
+			transition: "none",
+		}
 	},
 }));
 

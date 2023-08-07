@@ -1,12 +1,12 @@
 import { createUseStyles } from "react-jss";
 
 const blogStyles = createUseStyles(
-	(theme) => ({
+	{
 		mainContainer: {
 			display: "flex",
 			gap: "30px",
-			marginRight: "13%",
-			marginLeft: "13%",
+			paddingRight: "13%",
+			paddingLeft: "13%",
 		},
 		column: {
 			width: "50%",
@@ -42,7 +42,6 @@ const blogStyles = createUseStyles(
 			position: "absolute",
 			top: "25px",
 			left: "25px",
-			color: theme.primary,
 			opacity: "0",
 			transition: "1s linear all",
 		},
@@ -64,7 +63,7 @@ const blogStyles = createUseStyles(
 				},
 			},
 		},
-	}),
+	},
 	{ name: "Blog" }
 );
 

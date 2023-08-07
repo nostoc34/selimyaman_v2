@@ -3,8 +3,8 @@ import { createUseStyles } from "react-jss";
 const homeStyles = createUseStyles(
 	{
 		homepageContainer: {
-			marginRight: "13%",
-			marginLeft: "13%",
+			paddingRight: "13%",
+			paddingLeft: "13%",
 		},
 		introContainer: {
 			display: "flex",
@@ -40,15 +40,34 @@ const homeStyles = createUseStyles(
 		aboutContainer: (props) => ({
 			borderRadius: "50px",
 			marginTop: "30px",
-			marginBottom: "30px",
-			padding: "5%",
+			padding: "3% 10%",
 			display: "flex",
-			flexDirection: "column",
 			justifyContent: "center",
 			textAlign: "center",
-			gap: "20px",
+			gap: "50px",
 			fontSize: "20px",
 			fontWeight: "400",
+		}),
+		aboutContents: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center",
+			justifyContent: "center",
+			padding: "0 15% 0 0",
+			gap: "20px",
+		},
+		who: (props) => ({
+			fontSize: "24px",
+			fontWeight: "700",
+			padding: "5px",
+			cursor: "pointer",
+			border: `1px solid ${props.borderClr}`,
+			borderRadius: "15px",
+			"&:hover": {
+				backgroundColor: [props.hoverBg, "!important"],
+				color: [props.hoverClr, "!important"],
+				borderColor: [props.hoverBorderClr, "!important"],
+			},
 		}),
 		aboutLogo: {
 			width: "100%",
@@ -57,6 +76,7 @@ const homeStyles = createUseStyles(
 			margin: {
 				right: "5px",
 				left: "5px",
+				top: "15px",
 			},
 		},
 		"@media (max-width: 1100px)": {
@@ -89,7 +109,6 @@ const homeStyles = createUseStyles(
 			aboutContainer: (props) => ({
 				padding: "10%",
 				marginTop: "20px",
-				marginBottom: "20px",
 			}),
 		},
 	},
