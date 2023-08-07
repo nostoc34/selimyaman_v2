@@ -1,13 +1,14 @@
-import { useContext, useState, useEffect } from "react";
-import MainContext from "../../MainContext";
+import { useState, useEffect } from "react";
 import contactStyles from "./styles";
 import { TextInput, Button } from "ncore-web";
 import { ReactSVG } from "react-svg";
+import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
 
-function Contact() {
+function Contact({ children, ...props }) {
 	const [socialsData, setSocialsData] = useState([]);
-	const { lang } = useContext(MainContext);
-	const classes = contactStyles();
+	const classes = contactStyles(props);
+	const { colors } = useNCoreTheme();
+	const { activeLocale } = useNCoreLocalization();
 
 	const fetchData = () => {
 		fetch("http://localhost:5000/api/social")
@@ -26,39 +27,46 @@ function Contact() {
 		fetchData();
 	}, []);
 	return (
-		<div className={classes.mainContainer}>
+		<div
+			className={classes.mainContainer}
+			style={{ backgroundColor: colors.background }}
+		>
 			<form action="" className={classes.form}>
 				<div style={{ display: "flex", gap: "30px", width: "100%" }}>
 					<TextInput
-						placeholder={lang ? "Ad" : "Name"}
+						placeholder={activeLocale === "tr" ? "Ad" : "Name"}
 						className={classes.formInput}
 					/>
 					<TextInput
-						placeholder={lang ? "Soyad" : "Lastname"}
+						placeholder={
+							activeLocale === "tr" ? "Soyad" : "Lastname"
+						}
 						className={classes.formInput}
 					/>
 				</div>
 				<TextInput placeholder="Email" className={classes.formInput} />
 				<TextInput
 					multiline
-					placeholder={lang ? "Mesaj" : "Message"}
+					placeholder={activeLocale === "tr" ? "Mesaj" : "Message"}
 					className={classes.formInput}
 				/>
 				<Button
 					className={classes.formButton}
 					spreadBehaviour="stretch"
-					title={lang ? "Gönder" : "Send"}
+					title={activeLocale === "tr" ? "Gönder" : "Send"}
 				/>
 			</form>
-			<div>
+			<div className={classes.socialsContainer}>
 				{socialsData.map((social) => {
 					return (
-						<div className={classes.socialsItem}>
+						<a href={social.link} target="blank">
 							<ReactSVG
+								className={classes.socialsItem}
+								style={{ color: colors.primary }}
 								src={`http://localhost:5000/assets/${social.logo}`}
 								alt={social.title}
 							/>
-						</div>
+						</a>
 					);
 				})}
 			</div>

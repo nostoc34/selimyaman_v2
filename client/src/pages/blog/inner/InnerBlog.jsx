@@ -7,7 +7,7 @@ function InnerBlog({ children, ...props }) {
 	const [blogData, setBlogData] = useState([]);
 	const currentPath = useLocation().pathname;
 
-	const { colors, activeTheme } = useNCoreTheme();
+	const { colors } = useNCoreTheme();
 	const { activeLocale } = useNCoreLocalization();
 
 	const fetchBlogData = () => {

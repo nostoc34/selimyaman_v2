@@ -3,8 +3,10 @@ import { createUseStyles } from "react-jss";
 const contactStyles = createUseStyles(
 	(theme) => ({
 		mainContainer: {
-			marginRight: "13%",
-			marginLeft: "13%",
+			padding: "30px 13% 0 13%",
+			display: "flex",
+			flexDirection: "column",
+			gap: "60px",
 		},
 		form: {
 			display: "flex",
@@ -17,20 +19,29 @@ const contactStyles = createUseStyles(
 			justifyContent: "center",
 			alignItems: "center",
 		},
-		formInput: {
-			background: [theme.inputBg, "!important"],
+		formInput: (props) => ({
+			backgroundColor: [props.inputBg, "!important"],
 			width: "100%",
-		},
-		formButton: {
+		}),
+		formButton: (props) => ({
 			border: "none",
-			background: [theme.primary, "!important"],
+			background: [props.btnBg, "!important"],
 			"& > span": {
-				color: [theme.textColor, "!important"],
+				color: [props.btnTxtColor, "!important"],
 			},
+		}),
+		socialsContainer: {
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			gap: "20px",
 		},
 		socialsItem: {
-			"& > svg": {
-				color: theme.primary,
+			"&>div": {
+				"&>svg": {
+					height: "50px",
+					width: "50px",
+				},
 			},
 		},
 	}),

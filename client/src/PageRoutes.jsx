@@ -35,7 +35,16 @@ function PageRoutes() {
 				/>
 				<Route path="/blog" element={<Blog />} />
 				<Route path="/blog/:id" element={<InnerBlog />} />
-				<Route path="/iletisim" element={<Contact />} />
+				<Route
+					path="/iletisim"
+					element={
+						<Contact
+							inputBg={colors.inputBg}
+							btnBg={colors.primary}
+							btnTxtColor={colors.textColor}
+						/>
+					}
+				/>
 			</Routes>
 			<Footer />
 		</>

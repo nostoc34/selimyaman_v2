@@ -8,14 +8,8 @@ import locales from "./locales";
 import PageRoutes from "./PageRoutes";
 
 function App() {
-	const [theme, setTheme] = useState(true);
-	const [lang, setLang] = useState(true);
 	const [isCollapsed, setCollapsed] = useState(false);
 	const data = {
-		theme,
-		setTheme,
-		lang,
-		setLang,
 		isCollapsed,
 		setCollapsed,
 	};
