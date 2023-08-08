@@ -107,14 +107,20 @@ const navbarStyles = createUseStyles({
 			maxHeight: props.mHeight,
 			overflowY: "hidden",
 			transition: "1s ease-in-out all",
-			background: props.navbarBg,
 			borderRadius: "5px",
-			padding: "5px"
+			backgroundColor: props.clpsBg,
+			color: props.clpsColor
 		}),
 		navbarLinksBox: {
 			flexDirection: "column",
 			gap: "15px",
 		},
+		navbarLink: (props) => ({
+			"&  a": {
+				color: ["white", "!important"],
+				cursor: "pointer",
+			},
+		}),
 		navbarHamburgerMenu: {
 			display: "block",
 		},

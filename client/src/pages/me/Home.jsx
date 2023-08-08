@@ -1,4 +1,5 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useContext } from "react";
+import MainContext from "../../MainContext";
 import homeStyles from "./styles";
 import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ export default function Home({ children, ...props }) {
 
 	const { colors } = useNCoreTheme();
 	const { activeLocale } = useNCoreLocalization();
+	const { setCollapsed } = useContext(MainContext);
 
 	const navigate = useNavigate();
 
@@ -40,6 +42,7 @@ export default function Home({ children, ...props }) {
 	useEffect(() => {
 		fetchIntroData();
 		fetchAboutData();
+		setCollapsed(false);
 	}, []);
 
 	const classes = homeStyles(props);

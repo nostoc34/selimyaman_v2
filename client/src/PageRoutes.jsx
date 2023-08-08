@@ -17,6 +17,8 @@ function PageRoutes() {
 		<>
 			<Navbar
 				mHeight={isCollapsed ? "250px" : "0"}
+				clpsBg={colors.primary}
+				clpsColor={colors.textColor}
 				linkColor={colors.primary}
 				hoverLinkColor={colors.antiBackground}
 			/>

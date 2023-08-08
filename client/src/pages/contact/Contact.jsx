@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import contactStyles from "./styles";
 import { TextInput, Button } from "ncore-web";
 import { ReactSVG } from "react-svg";
 import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
+import MainContext from "../../MainContext";
 
 function Contact({ children, ...props }) {
 	const [socialsData, setSocialsData] = useState([]);
 	const classes = contactStyles(props);
 	const { colors } = useNCoreTheme();
 	const { activeLocale } = useNCoreLocalization();
+	const { setCollapsed } = useContext(MainContext);
 
 	const fetchData = () => {
 		fetch("http://localhost:5000/api/social")
@@ -25,6 +27,7 @@ function Contact({ children, ...props }) {
 
 	useEffect(() => {
 		fetchData();
+		setCollapsed(false);
 	}, []);
 	return (
 		<div

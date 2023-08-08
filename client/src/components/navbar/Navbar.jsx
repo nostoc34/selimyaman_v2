@@ -63,9 +63,6 @@ export default function Navbar({ children, ...props }) {
 			<div
 				id="navbar-menu"
 				className={classes.navbarMenu}
-				style={{
-					background: isCollapsed ? colors.antiBackground : null,
-				}}
 			>
 				<div className={classes.navbarLinksBox}>
 					{MENU.map((item, index) => {

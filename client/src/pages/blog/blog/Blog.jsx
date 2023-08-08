@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import MainContext from "../../../MainContext";
 import { useNCoreLocalization, useNCoreTheme } from "ncore-web";
 import { useNavigate } from "react-router-dom";
 import blogStyles from "./styles";
@@ -7,6 +8,9 @@ function Blog({ children, ...props }) {
 	const [blogData, setBlogData] = useState([]);
 	const { activeLocale } = useNCoreLocalization();
 	const { colors } = useNCoreTheme();
+	const { setCollapsed } = useContext(MainContext);
+	const navigate = useNavigate();
+	const classes = blogStyles(props);
 
 	const fetchBlogData = () => {
 		fetch("http://localhost:5000/api/blog")
@@ -23,9 +27,9 @@ function Blog({ children, ...props }) {
 
 	useEffect(() => {
 		fetchBlogData();
+		setCollapsed(false);
 	}, []);
-	const navigate = useNavigate();
-	const classes = blogStyles(props);
+
 	return (
 		<div
 			className={classes.mainContainer}

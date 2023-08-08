@@ -1,7 +1,8 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import innerBlogStyles from "./styles";
 import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
+import MainContext from "../../../MainContext";
 
 function InnerBlog({ children, ...props }) {
 	const [blogData, setBlogData] = useState([]);
@@ -9,6 +10,7 @@ function InnerBlog({ children, ...props }) {
 
 	const { colors } = useNCoreTheme();
 	const { activeLocale } = useNCoreLocalization();
+	const { setCollapsed } = useContext(MainContext);
 
 	const fetchBlogData = () => {
 		fetch("http://localhost:5000/api/blog")
@@ -25,7 +27,8 @@ function InnerBlog({ children, ...props }) {
 
 	useEffect(() => {
 		fetchBlogData();
-	}, [blogData]);
+		setCollapsed(false);
+	}, []);
 
 	const classes = innerBlogStyles(props);
 	return (
