@@ -76,7 +76,6 @@ function Contact({ children, ...props }) {
 						<a href={social.link} target="blank">
 							<ReactSVG
 								className={classes.socialsItem}
-								// style={{ color: colors.primary }}
 								src={`http://localhost:5000/assets/${social.logo}`}
 								alt={social.title}
 							/>

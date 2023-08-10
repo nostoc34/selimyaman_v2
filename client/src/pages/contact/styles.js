@@ -43,6 +43,8 @@ const contactStyles = createUseStyles(
 			background: [props.btnBg, "!important"],
 			"& > span": {
 				color: [props.btnTxtColor, "!important"],
+				fontFamily: ["Teko", "!important"],
+				fontSize: ["18px", "!important"]
 			},
 		}),
 		socialsContainer: {

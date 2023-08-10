@@ -18,6 +18,7 @@ import { postIntro, updateIntro } from "./controllers/me/intro.js";
 import { postAbout, updateAbout } from "./controllers/me/about.js";
 import { postBlog, updateBlog } from "./controllers/blog/blog.js";
 import { postSocial, updateSocial } from "./controllers/contact/socials.js";
+import { sendMail } from "./controllers/contact/mail.js";
 
 //initial settings
 dotenv.config();
@@ -57,6 +58,7 @@ app.post("/api/blog", postBlog);
 app.put("/api/blog/:id", updateBlog);
 app.post("/api/social", postSocial);
 app.put("/api/social/:id", updateSocial);
+app.post("/api/contact/mail", sendMail);
 
 //connect to db
 const PORT = process.env.PORT || 5000;
