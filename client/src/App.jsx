@@ -20,7 +20,7 @@ function App() {
 			config={{
 				themes: themes,
 				locales,
-				initialThemeKey: "dark",
+				initialThemeKey: "light",
 				initialLanguage: "tr",
 			}}
 		>

@@ -60,10 +60,7 @@ export default function Navbar({ children, ...props }) {
 				<img className={classes.navbarLogo} src={logo} alt="logo" />
 				<h1 className={classes.navbarLogoText}>Selim Yaman</h1>
 			</div>
-			<div
-				id="navbar-menu"
-				className={classes.navbarMenu}
-			>
+			<div id="navbar-menu" className={classes.navbarMenu}>
 				<div className={classes.navbarLinksBox}>
 					{MENU.map((item, index) => {
 						return (
@@ -112,10 +109,10 @@ export default function Navbar({ children, ...props }) {
 					</div>
 					<div className={classes.navbarToggles}>
 						<div className={classes.navbarToggleMiniBox}>
-							<MdOutlineDarkMode />
+							<MdOutlineLightMode />
 						</div>
 						<div className={classes.navbarToggleMiniBox}>
-							{activeTheme === "dark" ? (
+							{activeTheme === "light" ? (
 								<FaToggleOff
 									className={classes.navbarToogleIcon}
 									onClick={() => {
@@ -124,7 +121,6 @@ export default function Navbar({ children, ...props }) {
 												? "light"
 												: "dark"
 										);
-										console.log(activeTheme);
 									}}
 								/>
 							) : (
@@ -136,13 +132,12 @@ export default function Navbar({ children, ...props }) {
 												? "light"
 												: "dark"
 										);
-										console.log(activeTheme);
 									}}
 								/>
 							)}
 						</div>
 						<div className={classes.navbarToggleMiniBox}>
-							<MdOutlineLightMode />
+							<MdOutlineDarkMode />
 						</div>
 					</div>
 				</div>
