@@ -18,7 +18,7 @@ export const sendMail = async (req, res) => {
 	const mailOptions = {
 		from: process.env.MAIL_USER,
 		to: process.env.MAIL_USER,
-		subject: `${req.body.name} ${req.body.lastname} (${req.body.email}) kişisinden mesaj!`,
+		subject: `${req.body.name} (${req.body.email}) kişisinden mesaj!`,
 		text: req.body.message,
 	};
 	try {

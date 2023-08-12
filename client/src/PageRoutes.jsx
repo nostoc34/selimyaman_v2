@@ -43,9 +43,13 @@ function PageRoutes() {
 						<Contact
 							inputBg={colors.inputBg}
 							btnBg={colors.primary}
+							btnBorderClr={colors.primary}
 							btnTxtColor={colors.textColor}
+							hoverBtnTxtClr={colors.primary}
 							svgClr={colors.primary}
 							svgHoverClr={colors.antiBackground}
+							borderClr={colors.primary}
+							textClr={colors.antiBackground}
 						/>
 					}
 				/>

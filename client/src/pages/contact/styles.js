@@ -3,13 +3,23 @@ import { createUseStyles } from "react-jss";
 const contactStyles = createUseStyles(
 	{
 		mainContainer: {
-			padding: "5% 13%",
 			display: "flex",
 			flexDirection: "column",
-			gap: "60px",
+			justifyContent: "center",
+		},
+		backgroundImg: {
+			width: "100%",
+			maxWidth: "500px",
+			alignSelf: "center"
+		},
+		formContainer: {
+			padding: "3% 13% 0 13%",
+			display: "flex",
+			flexDirection: "column",
+			gap: "50px",
 			"@media screen and (max-width: 850px)": {
 				gap: "30px",
-				padding: "10% 13%",
+				padding: "7% 13% 0 13%",
 			},
 		},
 		form: {
@@ -23,29 +33,27 @@ const contactStyles = createUseStyles(
 			justifyContent: "center",
 			alignItems: "center",
 		},
-		formNames: {
-			display: "flex",
-			gap: "30px",
-			width: "100%",
-			"@media screen and (max-width: 850px)": {
-				flexDirection: "column",
-			},
-		},
 		formInput: (props) => ({
 			backgroundColor: [props.inputBg, "!important"],
 			width: "100%",
-			"& textarea": {
-				minHeight: "150px",
-			},
+			padding: "10px",
+			border: `1px solid ${props.borderClr}`,
+			color: props.textClr,
+			fontSize: "16px",
 		}),
 		formButton: (props) => ({
-			border: "none",
+			border: `1px solid ${props.btnBorderClr}`,
 			background: [props.btnBg, "!important"],
-			"& > span": {
-				color: [props.btnTxtColor, "!important"],
-				fontFamily: ["Teko", "!important"],
-				fontSize: ["18px", "!important"]
-			},
+			width: "100%",
+			padding: "10px",
+			color: [props.btnTxtColor, "!important"],
+			fontFamily: ["Teko", "!important"],
+			fontSize: ["18px", "!important"],
+			cursor: "pointer",
+			"&:hover": {
+				background: "white !important",
+				color: [props.hoverBtnTxtClr, "!important"]
+			}
 		}),
 		socialsContainer: {
 			display: "flex",

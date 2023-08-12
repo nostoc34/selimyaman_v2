@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import contactStyles from "./styles";
-import { TextInput, Button } from "ncore-web";
 import { ReactSVG } from "react-svg";
 import { useNCoreTheme, useNCoreLocalization } from "ncore-web";
 import MainContext from "../../MainContext";
 import axios from "axios";
+import { Formik, Field } from "formik";
+import contactBg from "../../assets/contactBg.png";
 
 function Contact({ children, ...props }) {
 	const [socialsData, setSocialsData] = useState([]);
@@ -12,24 +13,6 @@ function Contact({ children, ...props }) {
 	const { colors } = useNCoreTheme();
 	const { activeLocale } = useNCoreLocalization();
 	const { setCollapsed } = useContext(MainContext);
-
-	const [mailData, setMailData] = useState({
-		name: "",
-		lastname: "",
-		email: "",
-		message: "",
-	});
-
-	const sendMail = () => {
-		axios
-			.post("http://localhost:5000/api/contact/mail", mailData)
-			.then((res) => {
-				console.log(res.status);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
 
 	const fetchData = () => {
 		fetch("http://localhost:5000/api/social")
@@ -54,78 +37,99 @@ function Contact({ children, ...props }) {
 			className={classes.mainContainer}
 			style={{ backgroundColor: colors.background }}
 		>
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-				}}
-				className={classes.form}
+			<img
+				className={classes.backgroundImg}
+				src={contactBg}
+				alt="contactBg"
+			/>
+			<div
+				className={classes.formContainer}
+				style={{ backgroundColor: colors.background }}
 			>
-				<div className={classes.formNames}>
-					<TextInput
-						placeholder={activeLocale === "tr" ? "Ad" : "Name"}
-						className={classes.formInput}
-						onChangeText={(value) => {
-							setMailData({ ...mailData, name: value });
-						}}
-					/>
-					<TextInput
-						placeholder={
-							activeLocale === "tr" ? "Soyad" : "Lastname"
-						}
-						className={classes.formInput}
-						onChangeText={(value) => {
-							setMailData({ ...mailData, lastname: value });
-						}}
-					/>
-				</div>
-				<TextInput
-					placeholder="Email"
-					className={classes.formInput}
-					onChangeText={(value) => {
-						setMailData({ ...mailData, email: value });
+				<Formik
+					onSubmit={(values, onSubmitProps) => {
+						axios
+							.post(
+								"http://localhost:5000/api/contact/mail",
+								values
+							)
+							.then((res) => {
+								console.log(res.status);
+							})
+							.catch((err) => {
+								console.log(err);
+							})
+							.finally(() => {
+								onSubmitProps.resetForm();
+							});
 					}}
-				/>
-				<TextInput
-					multiline
-					placeholder={activeLocale === "tr" ? "Mesaj" : "Message"}
-					className={classes.formInput}
-					onChangeText={(value) => {
-						setMailData({ ...mailData, message: value });
-					}}
-				/>
-				<Button
-					className={classes.formButton}
-					spreadBehaviour="stretch"
-					type="submit"
-					title={activeLocale === "tr" ? "Gönder" : "Send"}
-					onClick={() => {
-						sendMail();
-					}}
-				/>
-				<p
-					style={{
-						color: colors.antiBackground,
-						textAlign: "center",
+					initialValues={{
+						name: "",
+						email: "",
+						message: "",
 					}}
 				>
-					{" "}
-					{activeLocale === "tr"
-						? "Daha fazla bilgi için: mselimyaman@gmail.com"
-						: "For more info: mselimyaman@gmail.com"}{" "}
-				</p>
-			</form>
-			<div className={classes.socialsContainer}>
-				{socialsData.map((social, index) => {
-					return (
-						<a key={index} href={social.link} target="blank">
-							<ReactSVG
-								className={classes.socialsItem}
-								src={`http://localhost:5000/assets/${social.logo}`}
-								alt={social.title}
+					{({ values, handleBlur, handleChange, handleSubmit }) => (
+						<form onSubmit={handleSubmit} className={classes.form}>
+							<Field
+								className={classes.formInput}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								value={values.name}
+								name="name"
+								autocomplete="off"
+								placeholder={
+									activeLocale === "tr" ? "Ad" : "Name"
+								}
 							/>
-						</a>
-					);
-				})}
+							<Field
+								className={classes.formInput}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								value={values.email}
+								name="email"
+								autocomplete="off"
+								placeholder="Email"
+							/>
+							<Field
+								className={classes.formInput}
+								as="textarea"
+								onBlur={handleBlur}
+								onChange={handleChange}
+								value={values.message}
+								name="message"
+								autocomplete="off"
+								placeholder={
+									activeLocale === "tr" ? "Mesaj" : "Message"
+								}
+								style={{
+									resize: "vertical",
+									minHeight: "200px",
+								}}
+							/>
+
+							<button
+								className={classes.formButton}
+								type="submit"
+							>
+								{activeLocale === "tr" ? "Gönder" : "Send"}
+							</button>
+						</form>
+					)}
+				</Formik>
+				<div className={classes.socialsContainer}>
+					{socialsData.map((social, index) => {
+						return (
+							<a key={index} href={social.link} target="blank">
+								<ReactSVG
+									className={classes.socialsItem}
+									src={`http://localhost:5000/assets/${social.logo}`}
+									alt={social.title}
+								/>
+							</a>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);

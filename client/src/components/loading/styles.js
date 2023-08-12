@@ -6,7 +6,6 @@ const loadingStyles = createUseStyles((theme) => ({
 		to: { transform: "rotateY(360deg)" },
 	},
 	loading: {
-		height: "100vh",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",

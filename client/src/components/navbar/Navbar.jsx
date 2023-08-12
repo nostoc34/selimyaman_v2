@@ -6,7 +6,7 @@ import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
 import navbarStyles from "./styles";
-import { useNCoreLocalization, useNCoreTheme, Switcher } from "ncore-web";
+import { useNCoreLocalization, useNCoreTheme } from "ncore-web";
 import { MENU } from "./menu";
 
 export default function Navbar({ children, ...props }) {
